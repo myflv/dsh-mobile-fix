@@ -1,6 +1,6 @@
 {
   "name": "@myflv/dsh-mobile-fix",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Mobile UI polish for the dsh web GUI: composer/model-chip layout, session header, and the model popover on narrow viewports.",
   "type": "module",
   "main": "lib/index.js",

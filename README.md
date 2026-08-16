@@ -5,7 +5,11 @@ A pure-CSS overlay plugin for the **dsh web** GUI ([deepseek-harness](https://gi
 1. **Width axis** — narrow screens redefine the layout variables so the message column, composer card, docks and stats line shrink together.
 2. **Model trigger** — the composer model chip caps its width by the tool-row container (180/140/128px tiers); on phones the effort label hides and row gaps tighten so the model name gets more room.
 3. **Session header** — breadcrumbs shrink and the tablist scrolls horizontally on narrow screens.
-4. **Model popover** — on phones the model menu becomes a fixed bottom sheet above the composer instead of being clipped by the center column.
+4. **Model popover** — split by conversation phase. In a conversation
+   (`[data-phase='active']`, composer docked at the bottom) the model menu
+   becomes a fixed bottom sheet sitting right above the composer; in a new
+   conversation (`[data-phase='hero']`, composer vertically centered) the menu
+   stays anchored to the model chip and scrolls internally instead of clipping.
 
 All rules live inside `@media (max-width: …)` / `@container` queries, so **desktop is untouched**.
 

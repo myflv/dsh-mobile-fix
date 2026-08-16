@@ -61,13 +61,18 @@ const STYLES = `
   }
 }
 
-/* 4) Model popover on narrow screens: the absolute menu opens leftward from
-      the trigger and gets clipped by the center column's overflow (looks
-      blocked by the sidebar). Anchor it as a fixed bottom sheet above the
-      composer; the composer deliberately avoids transform so position:fixed
-      escapes the clip. */
+/* 4) Model popover on narrow screens, split by conversation phase:
+   - Conversation detail ([data-phase='active']): the composer seat is sticky
+     at the viewport bottom, so a fixed bottom sheet lands right above the
+     composer — anchored, feels native.
+   - New conversation ([data-phase='hero']): the composer is vertically
+     centered (scrollBody justify-content:center), so a fixed bottom sheet
+     would land at the viewport bottom, far away from the model chip. Keep
+     the default popover anchored to the trigger (absolute, opens just above
+     the model chip) and cap its height so the centered column never clips
+     the top of the list; overflow-y:auto scrolls the rest internally. */
 @media (max-width: 480px) {
-  [data-composer-card] button[aria-haspopup='menu'] + [role='menu'] {
+  [data-phase='active'] [data-composer-card] button[aria-haspopup='menu'] + [role='menu'] {
     position: fixed;
     left: 8px;
     right: 8px;
@@ -75,6 +80,11 @@ const STYLES = `
     width: auto;
     max-width: none;
   }
+}
+
+[data-phase='hero'] [data-composer-card] button[aria-haspopup='menu'] + [role='menu'] {
+  max-height: min(360px, calc(50vh - 190px));
+  overflow-y: auto;
 }
 `
 
