@@ -80,11 +80,15 @@ const STYLES = `
     width: auto;
     max-width: none;
   }
-}
 
-[data-phase='hero'] [data-composer-card] button[aria-haspopup='menu'] + [role='menu'] {
-  max-height: min(360px, calc(50vh - 190px));
-  overflow-y: auto;
+  /* New conversation: composer vertically centered, so keep the default
+     popover anchored to the model chip instead of a viewport-bottom sheet;
+     cap its height so the centered column never clips the top of the list,
+     overflow-y:auto scrolls the rest internally. */
+  [data-phase='hero'] [data-composer-card] button[aria-haspopup='menu'] + [role='menu'] {
+    max-height: min(360px, calc(50vh - 190px));
+    overflow-y: auto;
+  }
 }
 `
 
