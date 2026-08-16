@@ -1,0 +1,5 @@
+# @myflv/dsh-mobile-fix bundle patch: inserts one browser-plugin row.
+# name 必须是包名(client-modules 节点半按包名解析 ./client 并注入 boot 图)。
+- insert:
+    - id: dsh-mobile-fix
+      name: '@myflv/dsh-mobile-fix'

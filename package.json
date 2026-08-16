@@ -1,0 +1,47 @@
+{
+  "name": "@myflv/dsh-mobile-fix",
+  "version": "0.1.0",
+  "description": "Mobile UI polish for the dsh web GUI: composer/model-chip layout, session header, and the model popover on narrow viewports.",
+  "type": "module",
+  "main": "lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./client": "./lib/client.js",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "lib",
+    "cordis.patch.yml",
+    "README.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web"
+    }
+  },
+  "scripts": {
+    "build": "npm run build:node && npm run build:client",
+    "build:node": "esbuild src/index.ts --bundle --format=esm --platform=node --outfile=lib/index.js",
+    "build:client": "esbuild src/client/index.ts --bundle --format=cjs --platform=browser --outfile=lib/client.js --sourcemap --banner:js=\"var module={exports:{}};var exports=module.exports;\"",
+    "prepack": "npm run build"
+  },
+  "keywords": [
+    "deepseek",
+    "harness",
+    "dsh",
+    "web",
+    "mobile",
+    "plugin"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "esbuild": "^0.24.0",
+    "typescript": "^5.6.0"
+  }
+}
